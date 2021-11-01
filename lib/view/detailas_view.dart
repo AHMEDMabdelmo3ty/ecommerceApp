@@ -135,7 +135,7 @@ class DetailsView extends StatelessWidget {
                     ],
                   ),
                   GetBuilder<CartViewModel>(
-                    init: CartViewModel(),
+                    init: Get.find(),
                     builder: (controller) => Container(
                       padding: EdgeInsets.all(20),
                       width: 180,
