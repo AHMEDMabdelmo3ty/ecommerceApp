@@ -3,6 +3,7 @@ import 'package:ecommerce/core/view_model/home_view_model.dart';
 import 'package:ecommerce/view/detailas_view.dart';
 import 'package:ecommerce/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
@@ -21,7 +22,10 @@ class HomeView extends StatelessWidget {
     return GetBuilder<HomeViewModel>(
       init: Get.find(),
       builder: (controller) => controller.loading.value
-          ? Center(child: CircularProgressIndicator())
+          ? Center(child:SpinKitSpinningLines(
+        color: primaryColor,
+        size: 150.0,itemCount: 30,
+      ),)
           : Scaffold(
               body: SingleChildScrollView(
                 child: Container(

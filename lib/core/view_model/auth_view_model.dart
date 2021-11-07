@@ -27,6 +27,9 @@ class AuthViewModel extends GetxController {
     // TODO: implement onInit
     super.onInit();
     _user.bindStream(_auth.authStateChanges());
+    if (_auth.currentUser!=null){
+      getCurrentUserData(_auth.currentUser.uid);
+    }
   }
 
   @override
@@ -118,6 +121,11 @@ class AuthViewModel extends GetxController {
     );
     await FireStoreUser().addUserToFireStore(userModel);
   setUser(userModel);
+  }
+  void getCurrentUserData(String uid)async{
+    await FireStoreUser().getCurrenUser(uid).then((value) {
+      setUser(UserModel.fromJson(value.data()));
+  });
   }
   void setUser(UserModel userModel)async{
     await localStorageData.setUser(userModel);
