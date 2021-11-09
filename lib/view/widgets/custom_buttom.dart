@@ -5,6 +5,7 @@ import 'custom_text.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
+  final double fontSized;
 
   final Color color;
 
@@ -13,7 +14,7 @@ class CustomButton extends StatelessWidget {
   CustomButton({
     @required this.onPress,
     this.text = 'Write text ',
-    this.color = primaryColor,
+    this.color = primaryColor, this.fontSized=16,
   });
 
   @override
@@ -31,6 +32,7 @@ class CustomButton extends StatelessWidget {
       child: CustomText(
         alignment: Alignment.center,
         text: text,
+        fontSize: fontSized,
         color: Colors.white,
       ),
     );

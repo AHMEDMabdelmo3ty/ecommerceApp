@@ -15,20 +15,36 @@ class CheckOutViewModel extends GetxController{
   int _index = 0;
   Pages get pages =>_pages;
 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  String street1,street2,city,state,country;
+
+
   Pages _pages = Pages.DeliveryTime;
   void changeIndex(int i){
-    _index=i;
-     if(_index==1){
+    if(i==0 ||i<0){
+      _pages=Pages.DeliveryTime;
+      _index=i;
+    }
+    else if(i==1){
        _pages=Pages.AddAddress;
+       _index=i;
      }
-    else if(_index==2){
-       _pages=Pages.Summary;
+    else if(i==2){
+      formKey.currentState.save();
+     if (formKey.currentState.validate()){
+        _pages=Pages.Summary;
+        _index=i;
 
      }
-     else if(_index==3){
-       _index=0;
-       Get.to(ControlView());
+
      }
+     else if(i==3){
+       _index=0;
+       _pages=Pages.DeliveryTime;
+       Get.to(ControlView());
+
+    }
      update();
   }
 

@@ -15,23 +15,28 @@ class CartView extends StatelessWidget {
       init: Get.find(),
       builder: (controller) =>
           Scaffold(
-            body: controller.cartProductModel.length == 0 ? Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // SvgPicture.asset(
-                //   'assets/emptycart.svg',
-                // height: 200,
-                //   width: 200,
-                // ),
-                SizedBox(height: 25,),
-                CustomText( text: 'empty cart',
-                fontSize: 32,
-                alignment: Alignment.center,)
-              ],
+            body: controller.cartProductModel.length == 0 ? Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // SvgPicture.asset(
+                  //   'assets/emptycart.svg',
+                  // height: 200,
+                  //   width: 200,
+                  // ),
+                  SizedBox(height: 25,),
+                  CustomText( text: 'empty cart',
+                  fontSize: 32,
+                  alignment: Alignment.center,)
+                ],
+              ),
             ) :Column(
           children: [ const SizedBox(height: 60,),
       Expanded(
         child: Container(
+          padding: const EdgeInsets.all(15.0),
+
           child: ListView.separated(
             itemBuilder: (context, index) {
               return Container(
@@ -39,7 +44,7 @@ class CartView extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      width: 140,
+                      width: 120,
                       child: Image.network(
                         controller.cartProductModel[index].image,
                         fit: BoxFit.fill,
